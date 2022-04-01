@@ -1,0 +1,17 @@
+-- Drop table
+
+ 
+
+-- DROP TABLE takecare.queue_status
+
+ 
+
+CREATE TABLE takecare.queue_status (
+
+       code SERIAL NOT NULL,
+
+       "name" varchar NULL,
+
+       CONSTRAINT queue_status_pkey PRIMARY KEY (code)
+
+);

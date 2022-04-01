@@ -1,0 +1,76 @@
+<div class="container" ng-class="{'menuOpen': $root.menuOpen, 'menuClosed': $root.menuOpen === false}" ng-init="mCtrl.initScheduleAppointment()">
+    <div class="card">
+        <div class="card-header">
+            <h2>Schedule new appointment</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="card-header card-body">
+            <div class="alert alert-danger" ng-show="formData.errMsg">{{formData.errMsg}}</div>
+            <div class="alert alert-success" ng-show="formData.successMsg">{{formData.successMsg}}</div>
+            <form ng-submit="mCtrl.scheduleAppointment()" ng-show="showSchedulePage">
+                <div class="list" style="background:none;">                   
+					
+					<label class="form-group">
+                        <span class="input input-label">Client ID</span><br/>
+                        <select ng-model="formData.client">							 						
+							<option ng-repeat="x in mCtrl.clients" value="{{x.id}}">{{x.id}}</option>  
+							<option value="" hidden />							
+                        </select>
+                    </label><br/><br/>				
+					
+					<label class="form-group">
+                        <span class="input input-label">Area</span><br/>
+                        <select ng-model="formData.area" ng-change="formData.profession = ''; formData.staff = ''; formData.hour = ''; formData.date = ''; formData.branch = ''">							 						
+							<option ng-repeat="x in mCtrl.areas" value="{{x.code}}">{{x.name}}</option>  
+							<option value="" hidden />							
+                        </select>
+                    </label><br/><br/>
+					
+					<label class="form-group">
+                        <span class="input input-label">Branch</span><br/>
+                        <select ng-model="formData.branch" ng-change="formData.profession = ''; formData.staff = ''; formData.hour = ''; formData.date = ''">							 						
+							<option ng-repeat="x in mCtrl.branches | filter:{ areaCode: this.formData.area }" value="{{x.code}}">{{x.branchName}}</option>  
+							<option value="" hidden />							
+                        </select>
+                    </label><br/><br/>
+					
+					<label class="form-group">
+                        <span class="input input-label">Profession</span><br/>
+                        <select ng-model="formData.profession" ng-change="formData.staff = ''; formData.hour = ''; formData.date = ''">							 						
+							<option ng-repeat="x in mCtrl.professions" value="{{x.code}}">{{x.name}}</option>  
+							<option value="" hidden />							
+                        </select>
+                    </label><br/><br/>
+					
+					<label class="form-group">
+                        <span class="input input-label">Staff</span><br/>
+                        <select ng-model="formData.staff" ng-change="formData.date = ''">							 						
+							<option ng-repeat="x in mCtrl.staffs | filter:{ professionCode: this.formData.profession, branchCode: this.formData.branch }" value="{{x.id}}">{{x.firstName}} {{x.lastName}}</option>  
+							<option value="" hidden />							
+                        </select>
+                    </label><br/><br/>
+					
+					<label class="form-group">
+                        <span class="input input-label">Date</span><br/>
+                        <select ng-model="formData.date" ng-change="formData.hour = ''">							 						
+							<option ng-repeat="x in mCtrl.appointments | filter:{ staff_id: this.formData.staff}:true | orderBy : 'date' | unique: 'date'" value="{{x.date}}">{{x.date_formatted}}</option>  
+							<option value="" hidden />							
+                        </select>
+                    </label><br/><br/>
+					
+					<label class="form-group">
+                        <span class="input input-label">Hour</span><br/>
+                        <select ng-model="formData.hour">							 						
+							<option ng-repeat="x in mCtrl.appointments | filter:{staff_id: this.formData.staff}:true  | filter:{ date: this.formData.date} | orderBy : 'hour'| unique: 'hour'"  value="{{x.hour}}">{{x.hour_desc}}</option>  
+							<option value="" hidden />							
+                        </select>
+                    </label><br/><br/>
+					
+                    <label class="item" style="background:none;border:0;">
+                        <button class="btn btn-primary" type="submit">SCHEDULE APPOINTMENT</button>
+                    </label>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

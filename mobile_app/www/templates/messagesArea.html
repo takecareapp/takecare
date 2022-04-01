@@ -1,0 +1,18 @@
+<ion-view view-title="Messages">
+  <ion-content>
+    <div class="container">
+	  <div ng-show="loading" class="loading-animation"><ion-spinner></ion-spinner></div>
+         <div ng-show="messages.length > 0" ng-hide="loading">
+            <b>Messages:</b><br/><br/>
+            <div ng-click="moreInfoMessages($index)" class="row item" ng-repeat="message in messages  | filter:search_query">
+               <div class="col" style="width: 40%;overflow-x: auto;">{{message.fullDate}}</div>
+			   <div class="col" style="width: 40%;overflow-x: auto;">{{message.profession}}</div>
+			   <div class="col" style="text-align: right;"><button style="background-color: white; color: black; border: 2px solid blue;" ng-click="rescheduleAppointment($index);$event.stopPropagation();">Schedule</button></div>	            
+			</div>
+         </div>
+         <div ng-show="messages.length == 0 && !loading">
+            <b>There are no messages.</b>
+         </div>
+    </div>
+  </ion-content>
+</ion-view>

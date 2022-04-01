@@ -1,0 +1,73 @@
+<ion-view view-title="Schedule new appointment">
+  <ion-content>
+   <div class="container">
+	  <div ng-show="loading" class="loading-animation"><ion-spinner></ion-spinner></div>
+         <div ng-show="nextAppointments.length > 0" ng-hide="loading">
+            <b>Schedule an appointment:</b><br/><br/>
+            <form ng-submit="scheduleAppointment()">					
+				<div class="list">
+					<label class="item item-input item-select">
+						<div class="input-label">Area</div>						
+						<select ng-model="formData.area" ng-change="formData.profession = ''; formData.staff = ''; formData.hour = ''; formData.date = ''; formData.branch = ''">							 						
+							<option ng-repeat="x in areas" value="{{x.code}}">{{x.name}}</option>  
+							<option value="" hidden />							
+                        </select>
+					</label>				
+				</div>
+				
+				<div class="list">
+					<label class="item item-input item-select">
+						<div class="input-label">Branch</div>						
+						<select ng-model="formData.branch" ng-change="formData.profession = ''; formData.staff = ''; formData.hour = ''; formData.date = ''">							 						
+							<option ng-repeat="x in branches | filter:{ areaCode: this.formData.area }" value="{{x.code}}">{{x.branchName}}</option>  
+							<option value="" hidden />							
+                        </select>
+					</label>				
+				</div>
+				
+				<div class="list">
+					<label class="item item-input item-select">
+						<div class="input-label">Profession</div>						
+						<select ng-model="formData.profession" ng-change="formData.staff = ''; formData.hour = ''; formData.date = ''">							 						
+							<option ng-repeat="x in professions" value="{{x.code}}">{{x.name}}</option>  
+							<option value="" hidden />							
+                        </select>
+					</label>				
+				</div>
+				
+				<div class="list">
+					<label class="item item-input item-select">
+						<div class="input-label">Staff</div>						
+						<select ng-model="formData.staff" ng-change="formData.date = ''">							 						
+							<option ng-repeat="x in staffs | filter:{ professionCode: this.formData.profession, branchCode: this.formData.branch }" value="{{x.id}}">{{x.firstName}} {{x.lastName}}</option>  
+							<option value="" hidden />							
+                        </select>
+					</label>				
+				</div>
+				
+				<div class="list">
+					<label class="item item-input item-select">
+						<div class="input-label">Date</div>						
+						<select ng-model="formData.date" ng-change="formData.hour = ''">							 						
+							<option ng-repeat="x in appointments | filter:{ staff_id: this.formData.staff}:true | orderBy : 'date' | unique: 'date'" value="{{x.date}}">{{x.date_formatted}}</option>  
+							<option value="" hidden />							
+                        </select>
+					</label>				
+				</div>
+				
+				<div class="list">
+					<label class="item item-input item-select">
+						<div class="input-label">Hour</div>						
+						<select ng-model="formData.hour">							 						
+							<option ng-repeat="x in appointments | filter:{staff_id: this.formData.staff}:true  | filter:{date: this.formData.date} | orderBy : 'hour'| unique: 'hour'"  value="{{x.hour}}">{{x.hour_desc}}</option>  
+							<option value="" hidden />							
+                        </select>
+					</label>				
+				</div>
+				
+				<button type="submit" class="button button-assertive">SCHEDULE APPOINTMENT</button>
+			</form>
+         </div>
+	</div>
+  </ion-content>
+</ion-view>

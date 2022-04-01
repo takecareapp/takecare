@@ -1,0 +1,31 @@
+-- Drop table
+
+ 
+
+-- DROP TABLE takecare.queue
+
+ 
+
+CREATE TABLE takecare.queue (
+
+       staff_id varchar NOT NULL,
+
+       "date" int4 NOT NULL,
+
+       "hour" int4 NOT NULL,
+
+       status int4 NULL,
+
+       id varchar NULL,
+
+       last_modified_date timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+
+       CONSTRAINT queue_pkey PRIMARY KEY (staff_id, date, hour),
+
+       CONSTRAINT queue_id_fkey FOREIGN KEY (id) REFERENCES takecare.person(id),
+
+       CONSTRAINT queue_staff_id_fkey FOREIGN KEY (staff_id) REFERENCES takecare.staff(id),
+
+       CONSTRAINT queue_status_fkey FOREIGN KEY (status) REFERENCES takecare.queue_status(code)
+
+);

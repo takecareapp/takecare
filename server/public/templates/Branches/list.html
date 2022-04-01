@@ -1,0 +1,76 @@
+<div class="container" ng-class="{'menuOpen': $root.menuOpen, 'menuClosed': $root.menuOpen === false}" ng-init="mCtrl.initBranchList()">
+    <div class="card">
+        <div class="card-header">
+            <div style="float:right">
+                <h2><small>Search Branch by ID or Name</small></h2>
+                <input type="text" ng-model="search.$"/>
+            </div>
+            <h2>Branch List <small>List of all the branches in the database</small></h2>
+            <div class="clearfix"></div>
+            <div class="m-t-10">
+                <div class="alert alert-danger" ng-show="formData.errMsg">{{formData.errMsg}}</div>
+                <div class="alert alert-success" ng-show="formData.successMsg">{{formData.successMsg}}</div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Branch Name</th>
+                    <th>Area Code</th>
+                    <th>Area</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="branch in mCtrl.branchList | filter:search:strict">
+                    <td>{{branch.code}}</td>
+                    <td>{{branch.branchName}}</td>
+                    <td>{{branch.areaCode}}</td>
+                    <td>{{branch.areaCodeName}}</td>
+                    <td>
+                        <i class="glyphicon glyphicon-pencil" aria-hidden="true" ng-click="mCtrl.fillBranchUpdateFileds(mCtrl.branchList.indexOf(branch));mCtrl.popBlocker(mCtrl.branchList.indexOf(branch))" style="cursor:pointer"></i>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="m-t-10">
+        <div class="alert alert-danger" ng-show="formData.errMsg">{{formData.errMsg}}</div>
+        <div class="alert alert-success" ng-show="formData.successMsg">{{formData.successMsg}}</div>
+    </div>
+
+
+    <div class="edit-blocker card" ng-show="mCtrl.editMode">
+        <form ng-submit="mCtrl.updateBranch(mCtrl.currentUserIndex)">
+            <div class="list" style="background:none;">
+                <label class="form-group">
+                    <span class="input-label">Code:</span>
+                    {{mCtrl.branchList[mCtrl.currentUserIndex].code}}
+                </label><br/>
+				
+                <label class="form-group">
+                    <span class="input-label">Branch Name:</span>
+                    <input type="text" class="form-control" ng-model="mCtrl.branchList[mCtrl.currentUserIndex].newBranchName">
+                </label><br/>
+				
+                <label class="form-group">
+                    <span class="input input-label">Area:</span><br/>
+					 <select ng-model="mCtrl.branchList[mCtrl.currentUserIndex].newAreaCode">							 						
+							<option ng-repeat="x in mCtrl.areas" value="{{x.code}}">{{x.name}}</option>  
+							<option value="" hidden />							
+					</select>                   
+                </label><br/>
+               
+                <label class="item" style="background:none;border:0;">
+                    <button class="btn btn-primary" type="submit">EDIT BRANCH</button>
+                </label>
+            </div>
+        </form>
+        <div class="closeButton" ng-click="mCtrl.closeBlocker()">X</div>
+    </div>
+
+</div>

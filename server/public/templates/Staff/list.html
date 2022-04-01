@@ -1,0 +1,106 @@
+<div class="container" ng-class="{'menuOpen': $root.menuOpen, 'menuClosed': $root.menuOpen === false}" ng-init="mCtrl.initStaffs()">
+    <div class="card">
+        <div class="card-header">
+            <div style="float:right">
+                <h2><small>Search Staffs by ID or Name</small></h2>
+                <input type="text" ng-model="search.$"/>
+            </div>
+            <h2>Staff List <small>List of all the clients in the database</small></h2>
+            <div class="clearfix"></div>
+            <div class="m-t-10">
+                <div class="alert alert-danger" ng-show="formData.errMsg">{{formData.errMsg}}</div>
+                <div class="alert alert-success" ng-show="formData.successMsg">{{formData.successMsg}}</div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>First Name</th>
+					<th>Last Name</th>
+                    <th>Phone Number</th>
+					<th>Profession</th>
+					<th>Branch</th>
+					<th>Personal Info</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="staff in mCtrl.staffs | filter:search:strict">
+                    <td>{{staff.id}}</td>
+                    <td>{{staff.firstName}}</td>
+                    <td>{{staff.lastName}}</td>
+                    <td>{{staff.phoneNumber}}</td>				
+					<td>{{staff.professionName}}</td>
+					<td>{{staff.branchName}}</td>
+					<td>{{staff.personalInformation}}</td>
+                    <td style="white-space: nowrap;">
+						<i class="glyphicon glyphicon-trash" aria-hidden="true" ng-click="mCtrl.removeStaff(mCtrl.staffs.indexOf(staff))" style="cursor:pointer"></i>
+                        <i class="glyphicon glyphicon-pencil" aria-hidden="true" ng-click="mCtrl.fillStaffUpdateFileds(mCtrl.staffs.indexOf(staff));mCtrl.popBlocker(mCtrl.staffs.indexOf(staff))" style="cursor:pointer"></i>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="m-t-10">
+        <div class="alert alert-danger" ng-show="formData.errMsg">{{formData.errMsg}}</div>
+        <div class="alert alert-success" ng-show="formData.successMsg">{{formData.successMsg}}</div>
+    </div>
+
+
+    <div class="edit-blocker card" ng-show="mCtrl.editMode">
+        <form ng-submit="mCtrl.updateStaff(mCtrl.currentUserIndex)">
+            <div class="list" style="background:none;">
+                <label class="form-group">
+                    <span class="input-label">ID:</span>
+                    {{mCtrl.staffs[mCtrl.currentUserIndex].id}}
+                </label><br/>
+				
+                <label class="form-group">
+                    <span class="input-label">First Name:</span>
+                    <input type="text" class="form-control" ng-model="mCtrl.staffs[mCtrl.currentUserIndex].newFirstName">
+                </label><br/>
+				
+                <label class="form-group">
+                    <span class="input-label">Last Name:</span>
+                    <input type="text" class="form-control" ng-model="mCtrl.staffs[mCtrl.currentUserIndex].newLastName">
+                </label><br/>
+				
+				<label class="form-group">
+                    <span class="input-label">Phone Number:</span>
+                    <input type="text" class="form-control" ng-model="mCtrl.staffs[mCtrl.currentUserIndex].newPhoneNumber">
+                </label><br/>			
+				
+				<label class="form-group">
+                    <span class="input-label">Personal Info:</span>
+                    <input type="text" class="form-control" ng-model="mCtrl.staffs[mCtrl.currentUserIndex].newPersonalInformation">
+                </label><br/>
+               
+			   <label class="form-group">
+					<span class="input input-label">Branch</span><br/>
+					<select ng-model="mCtrl.staffs[mCtrl.currentUserIndex].newBranchCode">							 						
+						<option ng-repeat="x in mCtrl.branches" value="{{x.code}}">{{x.branchName}}</option>  
+						<option value="" hidden />							
+					</select>
+				</label><br/>
+					
+				<label class="form-group">
+					<span class="input input-label">Profession</span><br/>
+					<select ng-model="mCtrl.staffs[mCtrl.currentUserIndex].newProfessionCode">							 						
+						<option ng-repeat="x in mCtrl.professions" value="{{x.code}}">{{x.name}}</option>  
+						<option value="" hidden />							
+					</select>
+				</label><br/>
+					
+                <label class="item" style="background:none;border:0;">
+                    <button class="btn btn-primary" type="submit">EDIT STAFF</button>
+                </label>
+            </div>
+        </form>
+        <div class="closeButton" ng-click="mCtrl.closeBlocker()">X</div>
+    </div>
+
+</div>

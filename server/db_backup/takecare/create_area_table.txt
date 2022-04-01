@@ -1,0 +1,17 @@
+-- Drop table
+
+ 
+
+-- DROP TABLE takecare.area
+
+ 
+
+CREATE TABLE takecare.area (
+
+       code SERIAL NOT NULL,
+
+       "name" varchar NULL,
+
+       CONSTRAINT area_pkey PRIMARY KEY (code)
+
+);

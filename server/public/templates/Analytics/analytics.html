@@ -1,0 +1,51 @@
+<div class="container" ng-class="{'menuOpen': $root.menuOpen, 'menuClosed': $root.menuOpen === false}" ng-init="mCtrl.initAnalytics()">
+	<h2>Analytics</h2>
+    <div class="card">
+		<script src="/javascripts/Chart.js" />
+		<div class="container" ng-class="{'menuOpen': $root.menuOpen, 'menuClosed': $root.menuOpen === false}">
+			<div class="card">
+				<div class="card-header">
+					<h2>New Users vs Abandoned Users</h2>
+					<div class="clearfix"></div>
+				</div>
+				<div class="card-header card-body">
+					
+					<canvas id="myChart" style="display: block;width: 770px;height: 385px;"></canvas>
+					
+					<br/>
+					<br/>
+					<br/>
+					<hr class="style-two">
+					<br/>
+					<br/>
+					<br/>
+				</div>	
+				
+				<div class="card-header">
+					<h2>Schedule Pick Hours</h2>
+					<div class="clearfix"></div>
+				</div>
+				
+				<div class="card-header card-body">					
+					
+					<canvas id="chartjs-3" class="chartjs" width="770" height="385" style="display: block; width: 770px; height: 385px;"></canvas>
+					
+					<br/>
+					<br/>
+					<br/>
+					<hr class="style-two">
+					<br/>
+					<br/>
+					<br/>
+				</div>	
+				<div class="card-header">
+					<h2>Occupancy Ratio</h2>
+					<div class="clearfix"></div>
+				</div>
+					<div class="card-header card-body">		
+						<canvas id="chartjs-5" class="chartjs" width="770" height="385" style="display: block; width: 770px; height: 385px;"></canvas>
+					</div>				
+			</div>
+		</div>
+    </div>
+</div>

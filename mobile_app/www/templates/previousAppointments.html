@@ -1,0 +1,17 @@
+<ion-view view-title="Previous Appointments">
+  <ion-content>
+    <div class="container">
+	  <div ng-show="loading" class="loading-animation"><ion-spinner></ion-spinner></div>
+         <div ng-show="previousAppointments.length > 0" ng-hide="loading">
+            <b>Previous Appointments:</b><br/><br/>
+            <div ng-click="moreInfoPreviousAppointment($index)" class="row item" ng-repeat="previousAppointment in previousAppointments  | filter:search_query">
+               <div class="col" style="width: 40%;overflow-x: auto;">{{previousAppointment.fullDate}}</div>
+			   <div class="col" style="width: 40%;overflow-x: auto;">{{previousAppointment.profession}}</div>
+            </div>
+         </div>
+         <div ng-show="previousAppointments.length == 0 && !loading">
+            <b>There are no previous appointments.</b>
+         </div>
+    </div>
+  </ion-content>
+</ion-view>

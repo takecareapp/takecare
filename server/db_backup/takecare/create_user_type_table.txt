@@ -1,0 +1,17 @@
+-- Drop table
+
+ 
+
+-- DROP TABLE takecare.user_type
+
+ 
+
+CREATE TABLE takecare.user_type (
+
+       "type" SERIAL NOT NULL,
+
+       description varchar NULL,
+
+       CONSTRAINT user_type_pkey PRIMARY KEY (type)
+
+);

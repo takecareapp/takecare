@@ -1,0 +1,50 @@
+<div class="container" ng-class="{'menuOpen': $root.menuOpen, 'menuClosed': $root.menuOpen === false}" ng-init="mCtrl.initAppointments()">
+    <div class="card">
+        <div class="card-header">
+            <div style="float:right">
+                <h2><small>Search Appointments</small></h2>
+                <input type="text" ng-model="search.$"/>
+            </div>
+            <h2>Appointment List <small>List of next appointments</small></h2>
+            <div class="clearfix"></div>
+            <div class="m-t-10">
+                <div class="alert alert-danger" ng-show="formData.errMsg">{{formData.errMsg}}</div>
+                <div class="alert alert-success" ng-show="formData.successMsg">{{formData.successMsg}}</div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+					<th>Date</th> 
+					<th>Branch</th>	
+                    <th>Doctor</th>
+                    <th>Profession</th>					
+					<th>Client ID</th>
+					<th>status</th>					
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="appointment in mCtrl.appointments | filter:search:strict">
+                    <td>{{appointment.fullDate}}</td>
+                    <td>{{appointment.branch}}</td>
+                    <td>{{appointment.doctor}}</td>
+					<td>{{appointment.profession}}</td>
+                    <td>{{appointment.id}}</td>	
+					<td>{{appointment.status}}</td>					
+                    <td>
+						<i class="glyphicon glyphicon-trash" aria-hidden="true" ng-click="mCtrl.removeAppointment(mCtrl.appointments.indexOf(appointment))" style="cursor:pointer"></i>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="m-t-10">
+        <div class="alert alert-danger" ng-show="formData.errMsg">{{formData.errMsg}}</div>
+        <div class="alert alert-success" ng-show="formData.successMsg">{{formData.successMsg}}</div>
+    </div>
+
+</div>

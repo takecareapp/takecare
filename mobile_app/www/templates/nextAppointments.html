@@ -1,0 +1,18 @@
+<ion-view view-title="Next Appointments">
+  <ion-content>
+    <div class="container">
+	  <div ng-show="loading" class="loading-animation"><ion-spinner></ion-spinner></div>
+         <div ng-show="nextAppointments.length > 0" ng-hide="loading">
+            <b>Next Appointments:</b><br/><br/>
+            <div ng-click="moreInfoNextAppointment($index)" class="row item" ng-repeat="nextAppointment in nextAppointments  | filter:search_query">
+               <div class="col" style="width: 40%;overflow-x: auto;">{{nextAppointment.fullDate}}</div>
+			   <div class="col" style="width: 40%;overflow-x: auto;">{{nextAppointment.profession}}</div>	
+			   <div class="col" style="text-align: right;"><button style="background-color: white; color: black; border: 2px solid blue;" ng-click="removeAppointment($index);$event.stopPropagation();">Remove</button></div>				   
+            </div>
+         </div>
+         <div ng-show="nextAppointments.length == 0 && !loading">
+            <b>There are no next appointments.</b>
+         </div>
+    </div>
+  </ion-content>
+</ion-view>

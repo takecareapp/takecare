@@ -1,0 +1,32 @@
+<div class="container" ng-class="{'menuOpen': $root.menuOpen, 'menuClosed': $root.menuOpen === false}" ng-init="mCtrl.initAreas()">
+    <div class="card">
+        <div class="card-header">
+            <h2>Add new Branch</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="card-header card-body">
+            <div class="alert alert-danger" ng-show="formData.errMsg">{{formData.errMsg}}</div>
+            <div class="alert alert-success" ng-show="formData.successMsg">{{formData.successMsg}}</div>
+            <form ng-submit="mCtrl.addBranch()">
+                <div class="list" style="background:none;">
+                    <label class="form-group">
+                        <span class="input-label">Branch Name</span>
+                        <input type="text" class="form-control" ng-model="formData.branchName">
+                    </label><br/>
+                  
+                    <label class="form-group">
+                        <span class="input input-label">Area</span><br/>
+                        <select ng-model="formData.areaCode">							 						
+							<option ng-repeat="x in mCtrl.areas" value="{{x.code}}">{{x.name}}</option>  
+							<option value="" hidden />							
+                        </select>
+                    </label><br/><br/>
+					
+                    <label class="item" style="background:none;border:0;">
+                        <button class="btn btn-primary" type="submit">ADD BRANCH</button>
+                    </label>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

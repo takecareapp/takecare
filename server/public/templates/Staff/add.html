@@ -1,0 +1,75 @@
+<div class="container" ng-class="{'menuOpen': $root.menuOpen, 'menuClosed': $root.menuOpen === false}" ng-init="mCtrl.initAddStaff()">
+    <div class="card">
+        <div class="card-header">
+            <h2>Add new Staff</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="card-header card-body">
+            <div class="alert alert-danger" ng-show="formData.errMsg">{{formData.errMsg}}</div>
+            <div class="alert alert-success" ng-show="formData.successMsg">{{formData.successMsg}}</div>
+            <form ng-submit="mCtrl.addStaff()">
+                <div class="list" style="background:none;">
+                    <label class="form-group">
+                        <span class="input-label">ID</span>
+                        <input type="text" class="form-control" ng-model="formData.id">
+                    </label><br/>
+                  
+                    <label class="form-group">
+                        <span class="input-label">First Name</span>
+                        <input type="text" class="form-control" ng-model="formData.firstName">
+                    </label><br/>
+					
+					<label class="form-group">
+                        <span class="input-label">Last Name</span>
+                        <input type="text" class="form-control" ng-model="formData.lastName">
+                    </label><br/>
+					
+					<label class="form-group">
+                        <span class="input-label">address</span>
+                        <input type="text" class="form-control" ng-model="formData.address">
+                    </label><br/>
+					
+					<label class="form-group">
+                        <span class="input-label">Phone Number</span>
+                        <input type="text" class="form-control" ng-model="formData.phoneNumber">
+                    </label><br/>
+					
+					<label class="form-group">
+                        <span class="input-label">Email</span>
+                        <input type="email" class="form-control" ng-model="formData.email">
+                    </label><br/>
+					
+					<label class="form-group">
+                        <span class="input-label">Password</span>
+                        <input type="password" class="form-control" ng-model="formData.password">
+                    </label><br/>
+					
+					<label class="form-group">
+                        <span class="input-label">Persnal Information</span>
+                        <input type="text" class="form-control" ng-model="formData.personalInfo">
+                    </label><br/>
+					
+					<label class="form-group">
+                        <span class="input input-label">Branch</span><br/>
+                        <select ng-model="formData.branch">							 						
+							<option ng-repeat="x in mCtrl.branches" value="{{x.code}}">{{x.branchName}}</option>  
+							<option value="" hidden />							
+                        </select>
+                    </label><br/><br/>
+					
+					<label class="form-group">
+                        <span class="input input-label">Profession</span><br/>
+                        <select ng-model="formData.profession">							 						
+							<option ng-repeat="x in mCtrl.professions" value="{{x.code}}">{{x.name}}</option>  
+							<option value="" hidden />							
+                        </select>
+                    </label><br/><br/>
+					
+                    <label class="item" style="background:none;border:0;">
+                        <button class="btn btn-primary" type="submit">ADD STAFF</button>
+                    </label>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

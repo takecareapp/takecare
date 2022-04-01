@@ -1,0 +1,44 @@
+<ion-side-menus enable-menu-with-back-views="true">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-stable">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button ng-show="userId !== -1" class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+		<span>&nbsp;</span>
+      </ion-nav-buttons>
+
+      <ion-nav-buttons side="right">
+        <p ng-show="userId !== -1" style="padding-top:6px;padding-right:6px;color:#fff;cursor:pointer" ng-click="logout()">Logout</p>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left" ng-show="userId !== -1">
+    <ion-header-bar class="bar-stable">
+      <h1 class="title">Menu</h1>
+    </ion-header-bar>
+    <ion-content>
+      <ion-list>
+        <ion-item menu-close href="#/app/newAppointment">
+          <img src="img/interface.png" style="vertical-align:-6px;padding-right:3px;"/> New Appointment
+        </ion-item>
+        <ion-item menu-close href="#/app/nextAppointments">
+          <img src="img/note3.png" style="vertical-align:-6px;padding-right:3px;"/> Next Appointments
+        </ion-item>
+		<ion-item menu-close href="#/app/previousAppointments">
+          <img src="img/note2.png" style="vertical-align:-6px;padding-right:3px;"/> Previous Appointments
+        </ion-item>
+		<ion-item menu-close href="#/app/messagesArea">
+          <img src="img/message.png" style="vertical-align:-6px;padding-right:3px;"/> Messages
+        </ion-item>
+        <ion-item menu-close href="#/app/about">
+          <img src="img/about-us.png" style="vertical-align:-6px;padding-right:3px;"/> About
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

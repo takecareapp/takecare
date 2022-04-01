@@ -1,0 +1,35 @@
+-- Drop table
+
+ 
+
+-- DROP TABLE takecare.person
+
+ 
+
+CREATE TABLE takecare.person (
+
+       id varchar NOT NULL,
+
+       first_name varchar NULL,
+
+       last_name varchar NULL,
+
+       address varchar NULL,
+
+       phone_number varchar NULL,
+
+       is_active varchar NULL,
+
+       user_type int4 NULL,
+
+       email varchar NULL,
+
+       "password" varchar NULL,
+
+       active_date timestamp NULL default current_timestamp,
+
+       CONSTRAINT person_pkey PRIMARY KEY (id),
+
+       CONSTRAINT person_user_type_fkey FOREIGN KEY (user_type) REFERENCES takecare.user_type(type)
+
+);

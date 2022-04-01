@@ -1,0 +1,17 @@
+-- Drop table
+
+ 
+
+-- DROP TABLE takecare.profession
+
+ 
+
+CREATE TABLE takecare.profession (
+
+       code SERIAL NOT NULL,
+
+       "name" varchar NULL,
+
+       CONSTRAINT profession_pkey PRIMARY KEY (code)
+
+);
