@@ -1,5 +1,5 @@
 {
-  "name": "snail_server",
+  "name": "takecare_server",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -17,7 +17,7 @@
     "mkdirp": "",
     "mocha": "^6.1.4",
     "morgan": "~1.7.0",
-    "pg": "",
+    "pg": "^8.7.3",
     "pg-pool": "",
     "promise": "^7.1.1",
     "request": "",

@@ -3,10 +3,10 @@ var Promise = require('promise');
 var logger = require('../logger');
 
 var pool = new Pool({
-	host: 'baasu.db.elephantsql.com',
-	database: 'qbyovcvu',
-	user: 'qbyovcvu',
-	password: 'H6x2eyjtYTbgMOLSpK405aBVy07lO1B1',
+	host: 'ruby.db.elephantsql.com',
+	database: 'hjfttonp',
+	user: 'hjfttonp',
+	password: 'tyCCNOyqdZ1IPe8-yzjZFywVOPS4_Cnj',
 	port: 5432,
 	ssl: true,
 	max: 80,
