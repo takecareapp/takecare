@@ -1,6 +1,7 @@
 'use strict';
 
 const fs = require('fs');
+const path = require('path');
 const winston = require('winston');
 var mkdirp = require('mkdirp');
 
@@ -19,7 +20,7 @@ let transports = [
 		datePattern: '.dd-MM-yyyy',
 		colorize: true,
 		timestamp: true,
-		filename: './logs/debug.log',
+		filename: path.join(__dirname, '.', 'logs/debug.log'),
 		maxsize: 10485760,
 		maxFiles: 200
 	})
