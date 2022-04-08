@@ -3,20 +3,21 @@
 	"version": "1.1.1",
 	"description": "Takecare: An Ionic project",
 	"dependencies": {
-		"cordova-android": "8.0.0",
-		"cordova-browser": "6.0.0",
-		"cordova-plugin-whitelist": "^1.3.3",
-		"gulp": "^3.9.1",
+		"cordova-android": "",
+		"cordova-browser": "",
+		"gulp": "",
 		"gulp-concat": "",
 		"gulp-minify-css": "",
 		"gulp-rename": "",
 		"gulp-sass": "",
-		"mkdirp": "^0.5.1"
+		"mkdirp": ""
 	},
 	"devDependencies": {
+		"@ionic/v1-toolkit": "3.2.16",
 		"bower": "",
+		"cordova-plugin-whitelist": "^1.3.4",
 		"gulp-util": "",
-		"shelljs": "^0.3.0"
+		"shelljs": ""
 	},
 	"cordovaPlatforms": [
 		"ios",
