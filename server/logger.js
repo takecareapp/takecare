@@ -15,6 +15,7 @@ function checkDir(dir) {
 	}
 };
 
+
 let transports = [
 	new winston.transports.DailyRotateFile({
 		datePattern: '.dd-MM-yyyy',
