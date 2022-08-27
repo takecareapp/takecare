@@ -193,7 +193,7 @@ angular.module('takecareapp.controllers', ['takecareapp.factory'])
 
 		Status: ${status}
 
-		Doctor Informatiom: ${doctor}
+		Doctor Information: ${doctor}
 
 		Branch: ${branch}
 

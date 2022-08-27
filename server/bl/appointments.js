@@ -2,6 +2,8 @@ var db = require('../dal');
 var Promise = require('promise');
 var request = require('request');
 var logger = require('../logger');
+var nodemailer = require('nodemailer');
+
 
 module.exports = {
 	
@@ -58,9 +60,15 @@ module.exports = {
 																
 									try {
 										 for (let i = 0; i < appointments.length; i++) {								 
-											 var phoneNunmber = appointments[i].phone_number;
-											 var first_name = appointments[i].first_name;								
-											 var message = `Hello ${first_name}, Appointment is now avalibale for you at takecare app. Enjoy!`;
+											 let phoneNunmber = appointments[i].phone_number;
+											 let first_name = appointments[i].first_name;
+											 let address = appointments[i].address;
+											 let message = `Hello ${first_name}, Appointment is now avalibale for you at takecare app. Enjoy!`;
+
+											 //send mail
+											 module.exports.sendMail(message, address);
+
+											 //send sms
 											 request.post('https://textbelt.com/text', {
 											  form: {
 												phone: phoneNunmber,
@@ -239,6 +247,45 @@ module.exports = {
 			});	
 			
 		});			
+	},
+
+	sendMail: function(message, address) {
+
+		try {
+			let transport = nodemailer.createTransport({
+				host: 'smtp-mail.outlook.com',                  // hostname
+				service: 'outlook',                             // service name
+				secureConnection: false,
+				tls: {
+					ciphers: 'SSLv3'                            // tls version
+				},
+				port: 587,                                      // port
+				auth: {
+					user: "takecareapp4@outlook.com",
+					pass: "!!A12345678a12345678"
+				}
+			});
+
+			let mailOptions = {
+				from: 'takecareapp4@outlook.com',
+				to: address,
+				subject: 'Notification from TakeCareApp',
+				text: message
+			};
+
+			transport.sendMail(mailOptions, function(error, info){
+				if (error) {
+					console.log(error);
+				} else {
+					console.log('Email sent: ' + info.response);
+				}
+			});
+
+		} catch(error) {
+			logger.error(error);
+			logger.info('Failed to sendMail');
+		}
+
 	}
 	
 };

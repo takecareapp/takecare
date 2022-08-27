@@ -437,9 +437,10 @@ module.exports = {
             return new Promise(function(resolve, reject) {				
 				pool.connect().then(client => {						
 					query = `
-		select 
-			distinct person.phone_number, 
-			initcap(person.first_name) as first_name
+		select distinct
+			person.phone_number, 
+			initcap(person.first_name) as first_name,
+			email as address
 		from 
 			takecare.queue queue
 				join takecare.person person on queue.id = person.id
