@@ -73,7 +73,7 @@ module.exports = {
 											  form: {
 												phone: phoneNunmber,
 												message: message,
-												key: 'textbelt',
+												key: '6f289f63ddadcad2497aabcaec02ddd9d65ca02eutbSS2DiAJEhbDKdOwduWU5Nh',
 											  },
 											}, function(err, httpResponse, body) {
 											  if (err) {
